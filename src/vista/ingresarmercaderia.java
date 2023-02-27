@@ -16,6 +16,9 @@ import javax.swing.table.DefaultTableModel;
  * @author aleja
  */
 public class ingresarmercaderia extends javax.swing.JFrame {
+    
+    Mercaderia me = new Mercaderia();
+    MercaderiaDao medao = new MercaderiaDao();
 
     /**
      * Creates new form ingresarmercaderia
