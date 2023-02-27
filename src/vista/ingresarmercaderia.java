@@ -16,13 +16,34 @@ import javax.swing.table.DefaultTableModel;
  * @author aleja
  */
 public class ingresarmercaderia extends javax.swing.JFrame {
-
+    Mercaderia me = new Mercaderia();
+    MercaderiaDao medao = new MercaderiaDao();
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    int id;
     /**
      * Creates new form ingresarmercaderia
      */
     public ingresarmercaderia() {
         initComponents();
         this.setLocationRelativeTo(null);
+        listar();
+    }
+    
+    void listar(){
+        List<Mercaderia>lista = medao.listar();
+        modelo = (DefaultTableModel)Tabla.getModel();
+        Object[] ob = new Object[7];
+        for(int i = 0; i <lista.size(); i ++){
+            ob[0] = lista.get(i) .getId();
+            ob[1] = lista.get(i) .getValor();
+            ob[2] = lista.get(i) .getFecha_ingreso();
+            ob[3] = lista.get(i) .getRazon_social();
+            ob[4] = lista.get(i) .getCantidad();
+            ob[5] = lista.get(i) .getCategoria();
+            ob[6] = lista.get(i) .getDetalle();
+        }
+        Tabla.setModel(modelo);
     }
 
     /**
@@ -43,23 +64,23 @@ public class ingresarmercaderia extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtid = new javax.swing.JTextField();
+        txtrazon_social = new javax.swing.JTextField();
+        txtcategoria = new javax.swing.JTextField();
+        txtvalor = new javax.swing.JTextField();
+        txtcantidad = new javax.swing.JTextField();
+        txtdetalle = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtfecha_ingreso = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btagregar = new javax.swing.JButton();
         btmodificar = new javax.swing.JButton();
         bteliminar = new javax.swing.JButton();
-        btconsultar = new javax.swing.JButton();
+        btnuevo = new javax.swing.JButton();
         btsalir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,17 +113,17 @@ public class ingresarmercaderia extends javax.swing.JFrame {
 
         jLabel8.setText("Cantidad:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtidActionPerformed(evt);
             }
         });
 
         jLabel9.setText("Fecha:");
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        txtfecha_ingreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                txtfecha_ingresoActionPerformed(evt);
             }
         });
 
@@ -116,36 +137,36 @@ public class ingresarmercaderia extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtrazon_social, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3))
+                        .addComponent(txtcategoria))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtdetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField7))
+                                .addComponent(txtfecha_ingreso))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
+                                .addComponent(txtcantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
                         .addGap(119, 119, 119))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -155,22 +176,22 @@ public class ingresarmercaderia extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtfecha_ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtrazon_social, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -179,12 +200,32 @@ public class ingresarmercaderia extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
         btagregar.setText("Agregar");
+        btagregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btagregarActionPerformed(evt);
+            }
+        });
 
         btmodificar.setText("Modificar");
+        btmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmodificarActionPerformed(evt);
+            }
+        });
 
         bteliminar.setText("Eliminar");
+        bteliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bteliminarActionPerformed(evt);
+            }
+        });
 
-        btconsultar.setText("Consultar");
+        btnuevo.setText("Nuevo");
+        btnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnuevoActionPerformed(evt);
+            }
+        });
 
         btsalir.setText("Salir");
         btsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -205,8 +246,8 @@ public class ingresarmercaderia extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addComponent(bteliminar)
                 .addGap(48, 48, 48)
-                .addComponent(btconsultar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(btnuevo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(btsalir)
                 .addGap(15, 15, 15))
         );
@@ -218,7 +259,7 @@ public class ingresarmercaderia extends javax.swing.JFrame {
                     .addComponent(btagregar)
                     .addComponent(btmodificar)
                     .addComponent(bteliminar)
-                    .addComponent(btconsultar)
+                    .addComponent(btnuevo)
                     .addComponent(btsalir))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
@@ -227,7 +268,7 @@ public class ingresarmercaderia extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Base de Datos"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -238,7 +279,21 @@ public class ingresarmercaderia extends javax.swing.JFrame {
                 "N°", "Razón Social", "Categoría", "Valor", "Fecha de Ingreso", "Cantidad", "Detalle"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        Tabla.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                TablaAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Tabla);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -269,13 +324,13 @@ public class ingresarmercaderia extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btregresar8ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtidActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void txtfecha_ingresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfecha_ingresoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_txtfecha_ingresoActionPerformed
 
     private void btsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsalirActionPerformed
         // TODO add your handling code here:
@@ -283,12 +338,139 @@ public class ingresarmercaderia extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btsalirActionPerformed
 
+    private void TablaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_TablaAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaAncestorAdded
 
+    private void btagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btagregarActionPerformed
+        // TODO add your handling code here:
+        agregar();
+        limpiarTabla();
+        listar();
+        nuevo();
+    }//GEN-LAST:event_btagregarActionPerformed
+
+    private void btmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmodificarActionPerformed
+        // TODO add your handling code here:
+        actualizar();
+        limpiarTabla();
+        listar();
+        nuevo();
+    }//GEN-LAST:event_btmodificarActionPerformed
+
+    private void bteliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteliminarActionPerformed
+        // TODO add your handling code here:
+        eliminar();
+        limpiarTabla();
+        listar();
+        nuevo();
+    }//GEN-LAST:event_bteliminarActionPerformed
+
+    private void btnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnuevoActionPerformed
+        // TODO add your handling code here:
+        nuevo();
+    }//GEN-LAST:event_btnuevoActionPerformed
+
+    private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
+        // TODO add your handling code here:
+        int fila = Tabla.getSelectedRow();
+        if (fila == - 1){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
+        }else{
+            String id = Tabla.getValueAt(fila, 0) .toString();
+            String valor = Tabla.getValueAt(fila, 1) .toString();
+            String fecha_ingreso = Tabla.getValueAt(fila, 2) .toString();
+            String razon_social = Tabla.getValueAt(fila, 3) .toString();
+            String cantidad = Tabla.getValueAt(fila, 4) .toString();
+            String categoria = Tabla.getValueAt(fila, 5) .toString();
+            String detalle = Tabla.getValueAt(fila, 6) .toString();
+            txtid.setText(id);
+            txtvalor.setText(valor);
+            txtfecha_ingreso.setText(fecha_ingreso);
+            txtrazon_social.setText(razon_social);
+            txtcantidad.setText(cantidad);
+            txtcategoria.setText(categoria);
+            txtdetalle.setText(detalle);
+        }
+    }//GEN-LAST:event_TablaMouseClicked
+
+    void agregar(){
+        String id =  txtid.getText();
+        String valor = txtvalor.getText();
+        String fecha_ingreso = txtfecha_ingreso.getText();
+        String razon_social = txtrazon_social.getText();
+        String cantidad = txtcantidad.getText();
+        String categoria = txtcategoria.getText();
+        String detalle = txtdetalle.getText();
+        Object[] ob = new Object[7];
+        ob[0] = id;
+        ob[1] = valor;
+        ob[2] = fecha_ingreso;
+        ob[3] = razon_social;
+        ob[4] = cantidad;
+        ob[5] = categoria;
+        ob[6] = detalle;
+        medao.add(ob);
+    }
+    
+    void actualizar(){
+        int fila = Tabla.getSelectedRow();
+        if(fila == - 1){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
+        }else{
+           String id =  txtid.getText();
+           String valor = txtvalor.getText();
+           String fecha_ingreso = txtfecha_ingreso.getText();
+           String razon_social = txtrazon_social.getText();
+           String cantidad = txtcantidad.getText();
+           String categoria = txtcategoria.getText();
+           String detalle = txtdetalle.getText();
+           Object[] obj = new Object[7];
+           obj[0] = id;
+           obj[1] = valor;
+           obj[2] = fecha_ingreso;
+           obj[3] = razon_social;
+           obj[4] = cantidad;
+           obj[5] = categoria;
+           obj[6] = detalle;
+           medao.actualizar(obj);
+        }
+    }
+    
+    void eliminar(){
+        int fila = Tabla.getSelectedRow();
+        int ids = Integer.parseInt(Tabla.getValueAt(fila, 0) .toString());
+        if (fila == - 1){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
+        }else{
+            medao.eliminar(ids);
+        }
+    }
+    
+    void nuevo(){
+        txtid.setText("");
+        txtvalor.setText("");
+        txtfecha_ingreso.setText("");
+        txtrazon_social.setText("");
+        txtcantidad.setText("");
+        txtcategoria.setText("");
+        txtdetalle.setText("");
+        txtid.requestFocus();
+    }
+    
+    void limpiarTabla(){
+        for(int i = 0; i < modelo.getRowCount(); i ++){
+            modelo.removeRow(i);
+            i = i - 1;
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tabla;
     private javax.swing.JButton btagregar;
-    private javax.swing.JButton btconsultar;
     private javax.swing.JButton bteliminar;
     private javax.swing.JButton btmodificar;
+    private javax.swing.JButton btnuevo;
     private javax.swing.JButton btregresar8;
     private javax.swing.JButton btsalir;
     private javax.swing.JLabel jLabel1;
@@ -304,13 +486,12 @@ public class ingresarmercaderia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtcantidad;
+    private javax.swing.JTextField txtcategoria;
+    private javax.swing.JTextField txtdetalle;
+    private javax.swing.JTextField txtfecha_ingreso;
+    private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtrazon_social;
+    private javax.swing.JTextField txtvalor;
     // End of variables declaration//GEN-END:variables
 }
