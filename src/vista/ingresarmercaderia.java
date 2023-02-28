@@ -1,23 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package vista;
 
-import modulos.ingresar;
-import modelo.Mercaderia;
-import modelo.MercaderiaDao;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Mercaderia;
+import modelo.MercaderiaDao;
+import modulos.ingresar;
 
 /**
  *
  * @author aleja
  */
 public class ingresarmercaderia extends javax.swing.JFrame {
-    Mercaderia me = new Mercaderia();
     MercaderiaDao medao = new MercaderiaDao();
+    Mercaderia me = new Mercaderia();
+    
     
     DefaultTableModel modelo = new DefaultTableModel();
     int id;
@@ -34,7 +32,7 @@ public class ingresarmercaderia extends javax.swing.JFrame {
         List<Mercaderia>lista = medao.listar();
         modelo = (DefaultTableModel)Tabla.getModel();
         Object[] ob = new Object[7];
-        for(int i = 0; i <lista.size(); i ++){
+        for(int i = 0; i < lista.size(); i ++){
             ob[0] = lista.get(i) .getId();
             ob[1] = lista.get(i) .getValor();
             ob[2] = lista.get(i) .getFecha_ingreso();
@@ -42,6 +40,7 @@ public class ingresarmercaderia extends javax.swing.JFrame {
             ob[4] = lista.get(i) .getCantidad();
             ob[5] = lista.get(i) .getCategoria();
             ob[6] = lista.get(i) .getDetalle();
+            modelo.addRow(ob);
         }
         Tabla.setModel(modelo);
     }
@@ -270,24 +269,12 @@ public class ingresarmercaderia extends javax.swing.JFrame {
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "N°", "Razón Social", "Categoría", "Valor", "Fecha de Ingreso", "Cantidad", "Detalle"
+                "N°", "Valor", "Fecha_Ingreso", "Razon_Social", "Cantidad", "Categoria", "Detalle"
             }
         ));
-        Tabla.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                TablaAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaMouseClicked(evt);
@@ -337,10 +324,6 @@ public class ingresarmercaderia extends javax.swing.JFrame {
         this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         this.dispose();
     }//GEN-LAST:event_btsalirActionPerformed
-
-    private void TablaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_TablaAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TablaAncestorAdded
 
     private void btagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btagregarActionPerformed
         // TODO add your handling code here:
@@ -461,7 +444,7 @@ public class ingresarmercaderia extends javax.swing.JFrame {
     void limpiarTabla(){
         for(int i = 0; i < modelo.getRowCount(); i ++){
             modelo.removeRow(i);
-            i = i - 1;
+            i=i-1;
         }
     }
     

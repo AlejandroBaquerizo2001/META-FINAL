@@ -1,9 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package vista;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Banco;
+import modelo.BancoDao;
 import modulos.ingresar;
 
 /**
@@ -11,6 +13,12 @@ import modulos.ingresar;
  * @author aleja
  */
 public class ingresarbanco extends javax.swing.JFrame {
+    
+    Banco ban = new Banco();
+    BancoDao bandao = new BancoDao();
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    int id;
 
     /**
      * Creates new form ingresarbanco
@@ -18,6 +26,23 @@ public class ingresarbanco extends javax.swing.JFrame {
     public ingresarbanco() {
         initComponents();
         this.setLocationRelativeTo(null);
+        listar();
+    }
+    
+    void listar(){
+        List<Banco> lista = bandao.listar();
+        modelo = (DefaultTableModel)Tabla.getModel();
+        Object[] ob = new Object[7];
+        for(int i = 0; i < lista.size(); i ++){
+            ob[0] = lista.get(i) .getId();
+            ob[1] = lista.get(i) .getNombre();
+            ob[2] = lista.get(i) .getRazon_social();
+            ob[3] = lista.get(i) .getCuenta();
+            ob[4] = lista.get(i) .getFecha_ingreso();
+            ob[5] = lista.get(i) .getRuc();
+            modelo.addRow(ob);
+        }
+        Tabla.setModel(modelo);
     }
 
     /**
@@ -38,21 +63,21 @@ public class ingresarbanco extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtid = new javax.swing.JTextField();
+        txtnombres = new javax.swing.JTextField();
+        txtrazon_social = new javax.swing.JTextField();
+        txtcuenta = new javax.swing.JTextField();
+        txtfecha_ingreso = new javax.swing.JTextField();
+        txtruc = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btagregar = new javax.swing.JButton();
         btmodificar = new javax.swing.JButton();
         bteliminar = new javax.swing.JButton();
-        btconsultar = new javax.swing.JButton();
+        btnuevo = new javax.swing.JButton();
         btsalir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,9 +110,9 @@ public class ingresarbanco extends javax.swing.JFrame {
 
         jLabel8.setText("Fecha:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtidActionPerformed(evt);
             }
         });
 
@@ -101,31 +126,31 @@ public class ingresarbanco extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtnombres, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3))
+                        .addComponent(txtrazon_social))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtcuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5)
+                        .addComponent(txtfecha_ingreso)
                         .addGap(119, 119, 119))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtruc, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 102, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -135,20 +160,20 @@ public class ingresarbanco extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtnombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtfecha_ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtrazon_social, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtruc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -157,12 +182,32 @@ public class ingresarbanco extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
         btagregar.setText("Agregar");
+        btagregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btagregarActionPerformed(evt);
+            }
+        });
 
         btmodificar.setText("Modificar");
+        btmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmodificarActionPerformed(evt);
+            }
+        });
 
         bteliminar.setText("Eliminar");
+        bteliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bteliminarActionPerformed(evt);
+            }
+        });
 
-        btconsultar.setText("Consultar");
+        btnuevo.setText("Nuevo");
+        btnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnuevoActionPerformed(evt);
+            }
+        });
 
         btsalir.setText("Salir");
         btsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -183,8 +228,8 @@ public class ingresarbanco extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addComponent(bteliminar)
                 .addGap(48, 48, 48)
-                .addComponent(btconsultar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(btnuevo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(btsalir)
                 .addGap(15, 15, 15))
         );
@@ -196,7 +241,7 @@ public class ingresarbanco extends javax.swing.JFrame {
                     .addComponent(btagregar)
                     .addComponent(btmodificar)
                     .addComponent(bteliminar)
-                    .addComponent(btconsultar)
+                    .addComponent(btnuevo)
                     .addComponent(btsalir))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
@@ -205,18 +250,20 @@ public class ingresarbanco extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Base de Datos"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nombres", "Razón Social", "Cuenta", "Fecha de Ingreso", "Ruc"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Tabla);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -247,9 +294,9 @@ public class ingresarbanco extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btregresarActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtidActionPerformed
 
     private void btsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsalirActionPerformed
         // TODO add your handling code here:
@@ -257,13 +304,128 @@ public class ingresarbanco extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btsalirActionPerformed
 
+    private void btnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnuevoActionPerformed
+        // TODO add your handling code here:
+        nuevo();
+    }//GEN-LAST:event_btnuevoActionPerformed
+
+    private void bteliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteliminarActionPerformed
+        // TODO add your handling code here:
+        eliminar();
+        limpiarTabla();
+        listar();
+        nuevo();
+    }//GEN-LAST:event_bteliminarActionPerformed
+
+    private void btmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmodificarActionPerformed
+        // TODO add your handling code here:
+        actualizar();
+        limpiarTabla();
+        listar();
+        nuevo();
+    }//GEN-LAST:event_btmodificarActionPerformed
+
+    private void btagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btagregarActionPerformed
+        // TODO add your handling code here:
+        agregar();
+        limpiarTabla();
+        listar();
+        nuevo();
+    }//GEN-LAST:event_btagregarActionPerformed
+
+    private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
+        // TODO add your handling code here:
+        int fila = Tabla.getSelectedRow();
+        if(fila == - 1){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fiila");
+        }else{
+            String id = Tabla.getValueAt(fila, 0) .toString();
+            String nombre = Tabla.getValueAt(fila, 1) .toString();
+            String razon_social = Tabla.getValueAt(fila, 2) .toString();
+            String cuenta = Tabla.getValueAt(fila, 3) .toString();
+            String fecha_ingreso = Tabla.getValueAt(fila, 4) .toString();
+            String ruc = Tabla.getValueAt(fila, 5) .toString();
+            txtid.setText(id);
+            txtnombres.setText(nombre);
+            txtrazon_social.setText(razon_social);
+            txtcuenta.setText(cuenta);
+            txtfecha_ingreso.setText(fecha_ingreso);
+            txtruc.setText(ruc);
+        }
+    }//GEN-LAST:event_TablaMouseClicked
+
+    void agregar(){
+        String id = txtid.getText();
+        String nombre = txtnombres.getText();
+        String razon_social = txtrazon_social.getText();
+        String cuenta = txtcuenta.getText();
+        String fecha_ingreso = txtfecha_ingreso.getText();
+        String ruc = txtruc.getText();
+        Object[] ob = new Object[6];
+        ob[0] = id;
+        ob[1] = nombre;
+        ob[2] = razon_social;
+        ob[3] = cuenta;
+        ob[4] = fecha_ingreso;
+        ob[5] = ruc;
+        bandao.add(ob);
+    }
     
+    void actualizar(){
+        int fila = Tabla.getSelectedRow();
+        if (fila == - 1){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
+        }else{
+             String id = txtid.getText();
+             String nombre = txtnombres.getText();
+             String razon_social = txtrazon_social.getText();
+             String cuenta = txtcuenta.getText();
+             String fecha_ingreso = txtfecha_ingreso.getText();
+             String ruc = txtruc.getText();
+             Object[] obj = new Object[6];
+             obj[0] = id;
+             obj[1] = nombre;
+             obj[2] = razon_social;
+             obj[3] = cuenta;
+             obj[4] = fecha_ingreso;
+             obj[5] = ruc;
+             bandao.actualizar(obj);
+        }
+    }
+    
+    void eliminar(){
+        int fila = Tabla.getSelectedRow();
+        int ids = Integer.parseInt(Tabla.getValueAt(fila, 0) .toString());
+        if (fila == - 1){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");  
+        }else{
+            bandao.eliminar(ids);
+        }
+    }
+    
+    void nuevo(){
+        txtid.setText("");
+        txtnombres.setText("");
+        txtrazon_social.setText("");
+        txtcuenta.setText("");
+        txtfecha_ingreso.setText("");
+        txtruc.setText("");
+        txtid.requestFocus();
+    }
+    
+    void limpiarTabla(){
+        for(int i = 0; i < modelo.getRowCount(); i ++){
+            modelo.removeRow(i);
+            i=i-1;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tabla;
     private javax.swing.JButton btagregar;
-    private javax.swing.JButton btconsultar;
     private javax.swing.JButton bteliminar;
     private javax.swing.JButton btmodificar;
+    private javax.swing.JButton btnuevo;
     private javax.swing.JButton btregresar;
     private javax.swing.JButton btsalir;
     private javax.swing.JLabel jLabel1;
@@ -278,12 +440,11 @@ public class ingresarbanco extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField txtcuenta;
+    private javax.swing.JTextField txtfecha_ingreso;
+    private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtnombres;
+    private javax.swing.JTextField txtrazon_social;
+    private javax.swing.JTextField txtruc;
     // End of variables declaration//GEN-END:variables
 }

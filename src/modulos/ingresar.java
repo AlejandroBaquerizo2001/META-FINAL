@@ -6,8 +6,6 @@ package modulos;
 
 import vista.ingresarbanco;
 import vista.ingresarmercaderia;
-import vista.ingresarpagoefectivo;
-import vista.ingresarpagotransaccion;
 import vista.ingresarusuarios;
 import vista.ingresocobros;
 
@@ -44,10 +42,6 @@ public class ingresar extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btbanco = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        btpagoe = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        btpagot = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         btcobro = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btregresar = new javax.swing.JButton();
@@ -59,10 +53,10 @@ public class ingresar extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btventa.setText("Ventas");
-        getContentPane().add(btventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, -1, -1));
+        getContentPane().add(btventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 130, 140));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 130, 140));
 
         btmercaderia.setText("Mercaderia");
         btmercaderia.addActionListener(new java.awt.event.ActionListener() {
@@ -70,10 +64,10 @@ public class ingresar extends javax.swing.JFrame {
                 btmercaderiaActionPerformed(evt);
             }
         });
-        getContentPane().add(btmercaderia, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
+        getContentPane().add(btmercaderia, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mercaderia.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 130, 120));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 130, 120));
 
         btusuario.setText("Usuario");
         btusuario.addActionListener(new java.awt.event.ActionListener() {
@@ -81,10 +75,10 @@ public class ingresar extends javax.swing.JFrame {
                 btusuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(btusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, -1));
+        getContentPane().add(btusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/persona.png"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 130, 110));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 130, 110));
 
         btfactura.setText("Facturas");
         btfactura.addActionListener(new java.awt.event.ActionListener() {
@@ -103,32 +97,10 @@ public class ingresar extends javax.swing.JFrame {
                 btbancoActionPerformed(evt);
             }
         });
-        getContentPane().add(btbanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, -1, -1));
+        getContentPane().add(btbanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banco.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 130, 130));
-
-        btpagoe.setText("Pago en Efectivo");
-        btpagoe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btpagoeActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btpagoe, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, -1, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/efectivo.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 130, 120));
-
-        btpagot.setText("Pago por Transacción");
-        btpagot.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btpagotActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btpagot, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/en linea.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 130, 140));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 130, 130));
 
         btcobro.setText("Cobros");
         btcobro.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +124,7 @@ public class ingresar extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel10.setText("Módulo de Ingresos al Sistema");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fon.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 440));
@@ -177,20 +149,6 @@ public class ingresar extends javax.swing.JFrame {
         open.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btcobroActionPerformed
-
-    private void btpagotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btpagotActionPerformed
-        // TODO add your handling code here:
-        ingresarpagotransaccion open= new ingresarpagotransaccion();
-        open.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btpagotActionPerformed
-
-    private void btpagoeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btpagoeActionPerformed
-        // TODO add your handling code here:
-        ingresarpagoefectivo open=new ingresarpagoefectivo();
-        open.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btpagoeActionPerformed
 
     private void btbancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbancoActionPerformed
         // TODO add your handling code here:
@@ -220,16 +178,12 @@ public class ingresar extends javax.swing.JFrame {
     private javax.swing.JButton btcobro;
     private javax.swing.JButton btfactura;
     private javax.swing.JButton btmercaderia;
-    private javax.swing.JButton btpagoe;
-    private javax.swing.JButton btpagot;
     private javax.swing.JButton btregresar;
     private javax.swing.JButton btusuario;
     private javax.swing.JButton btventa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

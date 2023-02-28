@@ -30,8 +30,6 @@ public class menuprincipal extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btingresos = new javax.swing.JButton();
-        btusuario = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         btreportes = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -62,10 +60,10 @@ public class menuprincipal extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel10.setText("Menú del Sistema");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 130, 140));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 130, 140));
 
         btingresos.setText("Ingresos");
         btingresos.addActionListener(new java.awt.event.ActionListener() {
@@ -73,18 +71,7 @@ public class menuprincipal extends javax.swing.JFrame {
                 btingresosActionPerformed(evt);
             }
         });
-        getContentPane().add(btingresos, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, -1, -1));
-
-        btusuario.setText("Perfil");
-        btusuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btusuarioActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/persona.png"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 130, 110));
+        getContentPane().add(btingresos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
 
         btreportes.setText("Reportes");
         btreportes.addActionListener(new java.awt.event.ActionListener() {
@@ -92,10 +79,10 @@ public class menuprincipal extends javax.swing.JFrame {
                 btreportesActionPerformed(evt);
             }
         });
-        getContentPane().add(btreportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, -1, -1));
+        getContentPane().add(btreportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/factura.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 120, 140));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 120, 140));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fon.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 270));
@@ -109,11 +96,6 @@ public class menuprincipal extends javax.swing.JFrame {
         open.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btreportesActionPerformed
-
-    private void btusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btusuarioActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_btusuarioActionPerformed
 
     private void btconsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btconsultasActionPerformed
         // TODO add your handling code here:
@@ -141,12 +123,10 @@ public class menuprincipal extends javax.swing.JFrame {
     private javax.swing.JButton btingresos;
     private javax.swing.JButton btregresar;
     private javax.swing.JButton btreportes;
-    private javax.swing.JButton btusuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }

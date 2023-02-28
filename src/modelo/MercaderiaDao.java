@@ -2,8 +2,8 @@
 package modelo;
 
 
-import conexion.Conexion;
 import java.sql.Connection;
+import conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -28,6 +28,7 @@ public class MercaderiaDao implements CRUD{
             con = cn.Conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
+            while (rs.next()){
             Mercaderia me = new Mercaderia();
             me.setId(rs.getInt(1));
             me.setValor(rs.getInt(2));
@@ -37,6 +38,7 @@ public class MercaderiaDao implements CRUD{
             me.setCategoria(rs.getString(6));
             me.setDetalle(rs.getString(7));
             lista.add(me);
+            }
         }catch(Exception e){
         }
         return lista;
@@ -45,16 +47,17 @@ public class MercaderiaDao implements CRUD{
     @Override
     public int add(Object[] o) {
         int r = 0;
-        String sql = "insert into mercaderia(idmercaderia,Valor, Fecha_Ingreso,Razon_Social,Cantidad,Categoria,Detalle) values(?,?,?,?,?,?,?)";
+        String sql = "insert into mercaderia(idmercaderia,Valor,Fecha_Ingreso,Razon_Social,Cantidad,Categoria,Detalle) values(?,?,?,?,?,?,?)";
         try {
             con = cn.Conectar();
-            ps.setObject(1, 0);
-            ps.setObject(2, 1);
-            ps.setObject(3, 2);
-            ps.setObject(4, 3);
-            ps.setObject(5, 4);
-            ps.setObject(6, 5);
-            ps.setObject(7, 6);
+            ps=con.prepareStatement(sql);
+            ps.setObject(1, o[0]);
+            ps.setObject(2, o[1]);
+            ps.setObject(3, o[2]);
+            ps.setObject(4, o[3]);
+            ps.setObject(5, o[4]);
+            ps.setObject(6, o[5]);
+            ps.setObject(7, o[6]);
             r = ps.executeUpdate();
         }catch(Exception e){
         }
