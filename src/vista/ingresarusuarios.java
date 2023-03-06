@@ -1,6 +1,7 @@
 
 package vista;
 
+import exceptions.ingresousuariosexceptions;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -361,10 +362,12 @@ public class ingresarusuarios extends javax.swing.JFrame {
     private void TABLAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLAMouseClicked
         // declaramos a nuestra tabla con valor int
         int fila = TABLA.getSelectedRow();
+        try{
         //definimos una restriccion if - else 
         if(fila == -1){
             //donde si no seleccionamos una fila este no nos permitira modificarla
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una Fila");
+            //JOptionPane.showMessageDialog(this, "Debe seleccionar una Fila");
+            throw new ingresousuariosexceptions("Seleccione una fila de datos");
         }else{
             //en caso de haber seleccionado una fila muestre los datos 
            /*int id= Integer.parseInt(TABLA.getValueAt(fila, 0) .toString());*/
@@ -382,6 +385,9 @@ public class ingresarusuarios extends javax.swing.JFrame {
           txtCelular.setText(celular);
           txtCedula.setText(cedula);
           txtDireccion.setText(direccion);
+        }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_TABLAMouseClicked
 
@@ -410,10 +416,12 @@ public class ingresarusuarios extends javax.swing.JFrame {
     void actualizar(){
         //sentenciamos que nuestra tabla sea de valor int
         int fila = TABLA.getSelectedRow();
+        try{
         //colocamos una restriccion
         if(fila==-1){
             //donde debe seleccionar una fila para que sea modificada
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una Fila");
+            //JOptionPane.showMessageDialog(this, "Debe seleccionar una Fila");
+            throw new ingresousuariosexceptions("Seleccione una fila de datos para actualizarlos");
         }else{
         // en caso de hacerlo presentar los valores
         String id=txtId.getText();
@@ -433,6 +441,9 @@ public class ingresarusuarios extends javax.swing.JFrame {
         obj[6]=direccion;
         dao.actualizar(obj);   
         }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     //sentenciamos nuestro metodo eliminar
@@ -441,13 +452,18 @@ public class ingresarusuarios extends javax.swing.JFrame {
         int fila = TABLA.getSelectedRow();
         //sentenciamos nuestro id como valor entero 
         int ids= Integer.parseInt(TABLA.getValueAt(fila, 0) .toString());
+        try{
         //declaramos una restriccion if - else 
         if(fila==-1){
             //donde debemos seleccionar una fila para poder eliminar el registro
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una Fila");
+            //JOptionPane.showMessageDialog(this, "Debe seleccionar una Fila");
+            throw new ingresousuariosexceptions ("SELECCIONE UNA FILA DE DATOS MOSTRADOS PARA ELIMINARLOS");
         }else{
             //en caso de ser asi elimine la fila sin conplicaciones
             dao.eliminar(ids);
+        }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     

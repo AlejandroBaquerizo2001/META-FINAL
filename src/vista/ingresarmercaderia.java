@@ -269,7 +269,7 @@ public class ingresarmercaderia extends javax.swing.JFrame {
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "N°", "Valor", "Fecha_Ingreso", "Razon_Social", "Cantidad", "Categoria", "Detalle"

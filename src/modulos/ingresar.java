@@ -53,6 +53,11 @@ public class ingresar extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btventa.setText("Ventas");
+        btventa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btventaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas.png"))); // NOI18N
@@ -127,7 +132,7 @@ public class ingresar extends javax.swing.JFrame {
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fon.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 440));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -170,6 +175,10 @@ public class ingresar extends javax.swing.JFrame {
     ingmerca.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_btmercaderiaActionPerformed
+
+    private void btventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btventaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btventaActionPerformed
 
    
 

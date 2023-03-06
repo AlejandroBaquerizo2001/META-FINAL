@@ -1,5 +1,6 @@
 package modulos;
 
+import exceptions.loginexception;
 import javax.swing.JOptionPane;
 import modelo.EntidadUsuario;
 import modelo.UsuarioDao;
@@ -91,14 +92,17 @@ public class login extends javax.swing.JFrame {
         //donde definimos que el dni y el user son los unicos datos que debe ingresar
         String dni=txtPass.getText();
         String user=txtUser.getText();
+        try{
         //sentenciamos una restriccion if-else
         if (txtUser.getText().equals("") || txtPass.getText().equals("")){
             //donde si ingresamos sin colocar datos validos nos muestre un mensaje de error
-            JOptionPane.showMessageDialog(this, "Debe Ingresar Datos En Las Cajas de Texto");
-            txtUser.requestFocus();
+            //JOptionPane.showMessageDialog(this, "Debe Ingresar Datos En Las Cajas de Texto");
+            //txtUser.requestFocus();
+            throw new loginexception("Rellenar los datos requeridos en las cajas de textos");
         }else{
             //caso contrario valide el ingreso del user y dni
             us=udao.ValidarUsuario(dni, user);
+            try{
             //sin embargo restringimos con otra sentencia if - else
             if (us.getUser() !=null && us.getDni() !=null){
                 //donde si los datos son validos nos dirija a nuestro menu principal
@@ -108,11 +112,17 @@ public class login extends javax.swing.JFrame {
             }else{
                 //caso contrario nos envie un mensaje de error indicando que debemos ingresar datos 
                 //validos
-                JOptionPane.showMessageDialog(this, "Debe ingresar usuarios validos");
-                txtUser.requestFocus();
+                /*JOptionPane.showMessageDialog(this, "Debe ingresar usuarios validos");*/
+                throw new loginexception("Datos ingresados no son correctos o no estan registrados");
+               // txtUser.requestFocus();
+            }
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        
+    }catch (Exception e){
+        JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }
     private void btsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsalirActionPerformed
         // TODO add your handling code here:
