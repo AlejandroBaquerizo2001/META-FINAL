@@ -7,6 +7,7 @@ package modulos;
 import vista.ingresarbanco;
 import vista.ingresarmercaderia;
 import vista.ingresarusuarios;
+import vista.ingresarventas;
 import vista.ingresocobros;
 
 /**
@@ -178,6 +179,9 @@ public class ingresar extends javax.swing.JFrame {
 
     private void btventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btventaActionPerformed
         // TODO add your handling code here:
+        ingresarventas igven = new ingresarventas();
+        igven.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btventaActionPerformed
 
    

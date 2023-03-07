@@ -19,6 +19,28 @@ public class ClienteDao implements CRUD{
     Conexion cn=new Conexion();
     PreparedStatement ps;
     ResultSet rs;
+    
+    public Cliente listarID(String id){
+        Cliente c=new Cliente();
+        String sql = "select * from cliente where idcliente=?";
+        try{
+        con = cn.Conectar();
+        ps=con.prepareStatement(sql);
+        ps.setString(1, id);
+        rs=ps.executeQuery();
+        while(rs.next()){
+            c.setId(rs.getInt(1));
+            c.setNombre(rs.getString(2));
+            c.setApellido(rs.getString(3));
+            c.setEdad(rs.getInt(4));
+            c.setCelular(rs.getInt(5));
+            c.setCedula(rs.getInt(6));
+            c.setDireccion(rs.getString(7));
+        }
+        }catch (Exception e){
+        }
+        return c;
+    }
 
     //declararemos nuestros metodos ya sea listar, add, actualizar, eliminar
     @Override
